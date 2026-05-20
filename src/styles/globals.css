@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ── CSS Custom Properties (works with Tailwind v4) ── */
+:root {
+  --color-brand:        #6c3bff;
+  --color-brand-light:  #9d6fff;
+  --color-brand-dark:   #4a1fcc;
+  --color-surface:      #0a0a0f;
+  --color-surface-1:    #111118;
+  --color-surface-2:    #1a1a25;
+  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-text:         #f0f0ff;
+  --color-muted:        #888899;
+}
+
+/* ── Base Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* ✅ Let Lenis control scroll, not CSS */
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: #0a0a0f;
+  color: #f0f0ff;
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  /* ✅ Don't hide cursor globally — only hide native when custom cursor is active */
+  cursor: none;
+  min-height: 100vh;
+}
+
+/* ── Sections — NEVER overflow hidden at body level ── */
+section {
+  position: relative;
+  /* ✅ Removed overflow: hidden — was clipping content */
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0f; }
+::-webkit-scrollbar-thumb {
+  background: #6c3bff;
+  border-radius: 99px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(108, 59, 255, 0.4);
+  color: #f0f0ff;
+}
+
+/* ── Noise Overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ── Orb utility ── */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(120px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ── Glass Card ── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Animated underline ── */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #6c3bff;
+  transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ── BounceCards overrides ── */
+.custom-bounceCards .card {
+  border: 3px solid rgba(108, 59, 255, 0.5) !important;
+  box-shadow:
+    0 8px 32px rgba(108, 59, 255, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── Skill bar animation ── */
+.skill-bar-fill {
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
