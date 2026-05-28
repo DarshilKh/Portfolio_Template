@@ -1,0 +1,44 @@
+/* ────────────────────────────────────────────
+   Shuffle Text — Scoped Styles
+   ──────────────────────────────────────────── */
+
+.shuffle-parent {
+  display: inline-block;
+  white-space: normal;
+  word-wrap: break-word;
+  will-change: transform;
+  line-height: 1.1;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  visibility: hidden;
+}
+
+.shuffle-parent.is-ready {
+  visibility: visible;
+}
+
+.shuffle-char-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.shuffle-char-wrapper > span {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.shuffle-char {
+  display: inline-block;
+}
+
+.shuffle-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.shuffle-line {
+  display: block;
+}
